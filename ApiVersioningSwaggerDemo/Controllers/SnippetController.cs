@@ -62,10 +62,15 @@ namespace ApiVersioningSwaggerDemo.Controllers
             Ok(_snippetService.GetSnippetById(id));
 
         /// <summary>
-        /// 
+        /// Posts a snippet to the database.
         /// </summary>
         /// <param name="snippet"></param>
         [HttpPost, Route]
+        [ResponseType(typeof(Snippet))]
+        [SwaggerResponse(HttpStatusCode.OK, "OK", Type = typeof(Snippet))]
+        [SwaggerResponseContentType(responseType: "application/json", Exclusive = true)]
+        [SwaggerResponse(HttpStatusCode.NotFound, "Not Found", Type = typeof(NotFoundResult))]
+        [SwaggerResponse(HttpStatusCode.InternalServerError, "Internal Server Error", Type = typeof(InternalServerErrorResult))]
         public IHttpActionResult Post([FromBody]Snippet snippet) =>
             Ok(_snippetService.PostSnippet(snippet));
 
@@ -82,14 +87,26 @@ namespace ApiVersioningSwaggerDemo.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <param cref="Snippet" name="snippet"></param>
+        [HttpPut, Route("{id:int}")]
+        [ResponseType(typeof(Snippet))]
+        [SwaggerResponse(HttpStatusCode.OK, "OK", Type = typeof(Snippet))]
+        [SwaggerResponseContentType(responseType: "application/json", Exclusive = true)]
+        [SwaggerResponse(HttpStatusCode.NotFound, "Not Found", Type = typeof(NotFoundResult))]
+        [SwaggerResponse(HttpStatusCode.InternalServerError, "Internal Server Error", Type = typeof(InternalServerErrorResult))]
         public IHttpActionResult Put(int id, [FromBody] Snippet snippet) =>
-            Ok();
+            Ok(_snippetService.UpdateSnippet(id, snippet));
 
         /// <summary>
         /// Delete Snippet
         /// </summary>
         /// <param name="id"></param>
+        [HttpDelete, Route("{id:int}")]
+        [ResponseType(typeof(Snippet))]
+        [SwaggerResponse(HttpStatusCode.OK, "OK", Type = typeof(Snippet))]
+        [SwaggerResponseContentType(responseType: "application/json", Exclusive = true)]
+        [SwaggerResponse(HttpStatusCode.NotFound, "Not Found", Type = typeof(NotFoundResult))]
+        [SwaggerResponse(HttpStatusCode.InternalServerError, "Internal Server Error", Type = typeof(InternalServerErrorResult))]
         public IHttpActionResult Delete(int id) =>
-            Ok();
+            Ok(_snippetService.DeleteSnippet(id));
     }
 }

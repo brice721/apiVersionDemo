@@ -93,3 +93,4 @@ C:\Users\112067\source\repos\ApiVersioningSwaggerDemo\ApiVersioningSwaggerDemo\o
 C:\Users\112067\source\repos\ApiVersioningSwaggerDemo\ApiVersioningSwaggerDemo\obj\Debug\ApiVersioningSwaggerDemo.csproj.CopyComplete
 C:\Users\112067\source\repos\ApiVersioningSwaggerDemo\ApiVersioningSwaggerDemo\obj\Debug\ApiVersioningSwaggerDemo.dll
 C:\Users\112067\source\repos\ApiVersioningSwaggerDemo\ApiVersioningSwaggerDemo\obj\Debug\ApiVersioningSwaggerDemo.pdb
+C:\Users\112067\source\repos\ApiVersioningSwaggerDemo\ApiVersioningSwaggerDemo\obj\Debug\ApiVersioningSwaggerDemo.csprojAssemblyReference.cache

@@ -594,7 +594,7 @@
         </member>
         <member name="M:ApiVersioningSwaggerDemo.Controllers.SnippetController.Post(ApiVersioningSwaggerDemo.Models.Snippet)">
             <summary>
-            
+            Posts a snippet to the database.
             </summary>
             <param name="snippet"></param>
         </member>
@@ -741,6 +741,21 @@
         <member name="M:ApiVersioningSwaggerDemo.Services.SnippetService.GetSnippetById(System.Int32)">
             <summary>
             Gets Snippet by Id.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiVersioningSwaggerDemo.Services.SnippetService.UpdateSnippet(System.Int32,ApiVersioningSwaggerDemo.Models.Snippet)">
+            <summary>
+            Update a snippet.
+            </summary>
+            <param name="id"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ApiVersioningSwaggerDemo.Services.SnippetService.DeleteSnippet(System.Int32)">
+            <summary>
+            Delete snippet
             </summary>
             <param name="id"></param>
             <returns></returns>

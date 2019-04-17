@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using ApiVersioningSwaggerDemo.Models;
@@ -55,5 +56,40 @@ namespace ApiVersioningSwaggerDemo.Services
         /// <returns></returns>
         public Snippet GetSnippetById(int id) => 
             _context.Snippets.Find(id);
+
+        /// <summary>
+        /// Update a snippet.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public IEnumerable<SnippetDto> UpdateSnippet(int id, Snippet entity)
+        {
+            var snippet = _context.Snippets.Find(id);
+
+            if (snippet != null)
+            {
+                snippet.Title = entity.Title;
+                snippet.Text = entity.Text;
+            }
+
+            _context.SaveChanges();
+
+            return GetSnippets();
+        }
+
+        /// <summary>
+        /// Delete snippet
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEnumerable<SnippetDto> DeleteSnippet(int id)
+        {
+            var snippet = _context.Snippets.Find(id);
+            _context.Entry(snippet).State = EntityState.Deleted;
+            _context.SaveChanges();
+
+            return GetSnippets();
+        }
     }
 }
