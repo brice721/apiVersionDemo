@@ -39,7 +39,7 @@
             Swagger configuration file.
             </summary>
         </member>
-        <member name="M:ApiVersioningSwaggerDemo.SwaggerConfig.Register">
+        <member name="M:ApiVersioningSwaggerDemo.SwaggerConfig.Register(System.Web.Http.HttpConfiguration)">
             <summary>
             Register method
             </summary>
@@ -655,6 +655,51 @@
             </summary>
             <param name="id"></param>
         </member>
+        <member name="T:ApiVersioningSwaggerDemo.Models.SnippetDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ApiVersioningSwaggerDemo.Models.SnippetDto.Title">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ApiVersioningSwaggerDemo.Models.SnippetDto.Text">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:ApiVersioningSwaggerDemo.Models.SnippetDto.Projection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ApiVersioningSwaggerDemo.Models.Snippet">
+            <summary>
+            Model for saving chunks of code or text notes that you don't want to forget.
+            </summary>
+        </member>
+        <member name="P:ApiVersioningSwaggerDemo.Models.Snippet.Id">
+            <summary>
+            Id for the code or text snippet.
+            </summary>
+        </member>
+        <member name="P:ApiVersioningSwaggerDemo.Models.Snippet.Title">
+            <summary>
+            The title of the code or text snippet.
+            </summary>
+        </member>
+        <member name="P:ApiVersioningSwaggerDemo.Models.Snippet.Text">
+            <summary>
+            The code or text snippet.
+            </summary>
+        </member>
+        <member name="P:ApiVersioningSwaggerDemo.Models.Snippet.Projection">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:ApiVersioningSwaggerDemo.Repository.VersionDemoDbContext">
             <summary>
             
@@ -751,26 +796,6 @@
             <param name="operation"></param>
             <param name="schemaRegistry"></param>
             <param name="apiDescription"></param>
-        </member>
-        <member name="T:ApiVersioningSwaggerDemo.Models.Snippet">
-            <summary>
-            Model for saving chunks of code or text notes that you don't want to forget.
-            </summary>
-        </member>
-        <member name="P:ApiVersioningSwaggerDemo.Models.Snippet.Id">
-            <summary>
-            Id for the code or text snippet.
-            </summary>
-        </member>
-        <member name="P:ApiVersioningSwaggerDemo.Models.Snippet.Title">
-            <summary>
-            The title of the code or text snippet.
-            </summary>
-        </member>
-        <member name="P:ApiVersioningSwaggerDemo.Models.Snippet.Text">
-            <summary>
-            The code or text snippet.
-            </summary>
         </member>
     </members>
 </doc>

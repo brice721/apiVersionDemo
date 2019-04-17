@@ -194,7 +194,9 @@
     <Compile Include="Models\Snippet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Swagger\DocumentFilters\HideInDocsDocumentFilter.cs" />
+    <Compile Include="Swagger\DocumentFilters\VersionDocumentFilter.cs" />
     <Compile Include="Swagger\OperationFilters\ResponseContentTypeOperationFilter.cs" />
+    <Compile Include="Swagger\OperationFilters\VersionOperationFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />

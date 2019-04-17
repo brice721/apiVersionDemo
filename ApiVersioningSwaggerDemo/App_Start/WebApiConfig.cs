@@ -8,6 +8,7 @@ using System.Web.Http.Routing;
 using ApiVersioningSwaggerDemo.Controllers;
 using Microsoft.Web.Http;
 using Microsoft.Web.Http.Routing;
+using Microsoft.Web.Http.Versioning;
 
 namespace ApiVersioningSwaggerDemo
 {
@@ -35,10 +36,7 @@ namespace ApiVersioningSwaggerDemo
                 // MethodInfo methodInfo = typeof(SnippetController).GetMethod("PostV2");
 
                 o.ReportApiVersions = true;
-                // o.Conventions.Controller<SnippetController>()
-                //     .HasApiVersion(ApiVersion.Parse("2"))
-                //     .Action(methodInfo)
-                //     .MapToApiVersion(ApiVersion.Parse("2"));
+                o.ApiVersionReader = new UrlSegmentApiVersionReader();
             });
 
             config.MapHttpAttributeRoutes(constraintResolver);

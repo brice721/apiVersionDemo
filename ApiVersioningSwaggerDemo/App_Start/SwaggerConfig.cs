@@ -13,6 +13,8 @@ namespace ApiVersioningSwaggerDemo
     using ApiVersioningSwaggerDemo.Swagger.DocumentFilters;
     using ApiVersioningSwaggerDemo.Swagger.OperationFilters;
     using System.Net.Http;
+    // using System.Web.Http.Description;
+    using System.Web.Http.Routing.Constraints;
     using static ApiVersioningSwaggerDemo.AppConstants;
 
     /// <summary>
@@ -56,7 +58,7 @@ namespace ApiVersioningSwaggerDemo
                                     .Email(ApiContactEmail))
                             .License(lc =>
                                 lc.Name("MIT")
-                                    .Url("https://opensource.org/licenses/MIT")); ;
+                                    .Url("https://opensource.org/licenses/MIT"));
 
                         // If you want the output Swagger docs to be indented properly, enable the "PrettyPrint" option.
                         //
@@ -68,12 +70,35 @@ namespace ApiVersioningSwaggerDemo
                         // returns an "Info" builder so you can provide additional metadata per API version.
                         //
                         //c.MultipleApiVersions(
-                        //    (apiDesc, targetApiVersion) => ResolveVersionSupportByRouteConstraint(apiDesc, targetApiVersion),
-                        //    (vc) =>
+                        //(apiDesc, targetApiVersion) => ResolveVersionSupportByRouteConstraint(apiDesc, targetApiVersion),
+                        //(vc) =>
+                        //{
+                        //    foreach (var group in apiExplorer.ApiDescriptions)
                         //    {
-                        //        vc.Version("v2", "Swashbuckle Dummy API V2");
-                        //        vc.Version("v1", "Swashbuckle Dummy API V1");
-                        //    });
+                        //        var description = "";
+                        //        if (group.IsDeprecated) description += "This API deprecated";
+
+                        //        vc.Version(group.Name, $"Service API {group.ApiVersion}")
+                        //            .Description(description);
+                        //    }
+
+                        //    vc.Version("v2", "Swashbuckle Dummy API V2");
+                        //    vc.Version("v1", "Swashbuckle Dummy API V1");
+                        //});
+
+                        //c.MultipleApiVersions(
+                        //(apiDesc, targetApiVersion) => apiDesc.GetGroupName() == targetApiVersion,
+                        //versionBuilder =>
+                        //{
+                        //    foreach (var group in apiExplorer.ApiDescriptions)
+                        //    {
+                        //        var description = "";
+                        //        if (group.IsDeprecated) description += "This API deprecated";
+
+                        //        versionBuilder.Version(group.Name, $"Service API {group.ApiVersion}")
+                        //            .Description(description);
+                        //    }
+                        //});
 
                         // You can use "BasicAuth", "ApiKey" or "OAuth2" options to describe security schemes for the API.
                         // See https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md for more details.
@@ -85,7 +110,7 @@ namespace ApiVersioningSwaggerDemo
                         //c.BasicAuth("basic")
                         //    .Description("Basic HTTP Authentication");
                         //
-						// NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
+                        // NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
                         //c.ApiKey("apiKey")
                         //    .Description("API Key Authentication")
                         //    .Name("apiKey")
@@ -175,6 +200,7 @@ namespace ApiVersioningSwaggerDemo
                         // Operation filters.
                         
                         c.OperationFilter<ResponseContentTypeOperationFilter>();
+                        c.OperationFilter<VersionOperationFilter>();
 
                         //
                         // If you've defined an OAuth2 flow as described above, you could use a custom filter
@@ -187,8 +213,9 @@ namespace ApiVersioningSwaggerDemo
                         // This gives full control to modify the final SwaggerDocument. You should have a good understanding of
                         // the Swagger 2.0 spec. - https://github.com/swagger-api/swagger-spec/blob/master/versions/2.0.md
                         // before using this option.
-                        
+
                         c.DocumentFilter<HideInDocsDocumentFilter>();
+                        c.DocumentFilter<VersionDocumentFilter>();
 
                         // In contrast to WebApi, Swagger 2.0 does not include the query string component when mapping a URL
                         // to an action. As a result, Swashbuckle will raise an exception if it encounters multiple actions
@@ -277,6 +304,7 @@ namespace ApiVersioningSwaggerDemo
                     });
 
         }
+
         private static string GetXmlCommentsPath()
         {
             var x = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"bin\ApiVersioningSwaggerDemo.xml");
@@ -284,5 +312,16 @@ namespace ApiVersioningSwaggerDemo
             System.Diagnostics.Debug.WriteLine(x);
             return x;
         }
+
+        //private static bool ResolveVersionSupportByRouteConstraint(ApiDescription apiDesc, string targetApiVersion)
+        //{
+        //    var versionConstraint = (apiDesc.Route.Constraints.ContainsKey("apiVersion"))
+        //        ? apiDesc.Route.Constraints["apiVersion"] as RegexRouteConstraint
+        //        : null;
+
+        //    return (versionConstraint == null)
+        //        ? false
+        //        : versionConstraint.Pattern.Split('|').ToList().Contains(targetApiVersion);
+        //}
     }
 }
